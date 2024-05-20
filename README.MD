@@ -28,3 +28,29 @@ There are frameworks built on top of react such as nextJS and Remix.
 - set eslint run to onSave.
 
 4. Set some vscode user snippets from [here](https://github.com/jonasschmedtmann/ultimate-react-course/blob/main/00-setup/snippets.json)
+
+## Options to Setup a React Project
+
+Here are two out of few options to create a react project,
+
+1. using `create-react-app`:
+
+- complete starter kit for react app
+- everything is configured (eslint, prettier, etc)
+- slow and outdated technologies (webpack)
+- its better to not use for a real-world apps.
+
+2. using `vite`:
+
+- modern build tool for react app.
+- need to manually set up eslint
+- extremely fast hot module replacement (hmr).
+- use for modern real-world apps.
+
+## React Frameworks
+
+To start a new real-world react project, react recommended us to use their frameworks such as **Next.js** and **Remix**.
+
+These frameworks will help us to avoid building solution of our own to solve code-splitting, routing, etc.
+
+In summary, **Next.js** and **Remix** will make sense for building actual products, not for learning react.
