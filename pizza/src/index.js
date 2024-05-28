@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import "./style.css";
 
 const pizzaData = [
   {
@@ -48,7 +49,7 @@ const pizzaData = [
 
 function App() {
   return (
-    <div>
+    <div className="container">
       <Header />
       <Menu />
       <Footer />
@@ -57,12 +58,18 @@ function App() {
 }
 
 function Header() {
-  return <h1>Fast React Pizza Co.</h1>;
+  // const style = { color: "red", fontSize: "49px", textTransform: "uppercase" };
+  const style = {};
+  return (
+    <header className="header">
+      <h1 style={style}>Fast React Pizza Co.</h1>
+    </header>
+  );
 }
 
 function Menu() {
   return (
-    <div>
+    <div className="menu">
       <h2>Our menu</h2>
       <Pizza />
       <Pizza />
@@ -84,7 +91,7 @@ function Footer() {
   }
 
   return (
-    <footer>
+    <footer className="footer">
       {new Date().toLocaleTimeString()} {info}
     </footer>
   );
@@ -95,7 +102,7 @@ function Pizza() {
   return (
     <div>
       <img src="images/bangkit.jpg" alt="" />
-      <h2>Bangkit Cloud Computing</h2>
+      <h3>Bangkit Cloud Computing</h3>
       <p>Cheese, Cheese, Cheese</p>
     </div>
   );
