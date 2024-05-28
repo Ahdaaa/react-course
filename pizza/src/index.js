@@ -71,9 +71,34 @@ function Menu() {
   return (
     <div className="menu">
       <h2>Our menu</h2>
-      <Pizza />
-      <Pizza />
-      <Pizza />
+
+      <Pizza
+        name="Bangkit Cloud Computing"
+        ingredient="Cheese, Cheese, Cheese"
+        photoName="images/bangkit.jpg"
+        price={10}
+      />
+
+      <Pizza
+        name="Bangkit Machine Learning"
+        ingredient="TENSORFLOW, TENSORFLOW, TENSORFLOW"
+        photoName="images/bangkit.jpg"
+        price={15}
+      />
+    </div>
+  );
+}
+
+function Pizza(props) {
+  // console.log(props);
+  return (
+    <div className="pizza">
+      <img src={props.photoName} alt="" />
+      <div>
+        <h3>{props.name}</h3>
+        <p>{props.ingredient}</p>
+        <p>{props.price + 3}</p>
+      </div>
     </div>
   );
 }
@@ -96,16 +121,6 @@ function Footer() {
     </footer>
   );
   // return React.createElement("footer", null, "We're currently open!");
-}
-
-function Pizza() {
-  return (
-    <div>
-      <img src="images/bangkit.jpg" alt="" />
-      <h3>Bangkit Cloud Computing</h3>
-      <p>Cheese, Cheese, Cheese</p>
-    </div>
-  );
 }
 
 // React v18
