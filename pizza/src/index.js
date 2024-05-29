@@ -2,6 +2,37 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./style.css";
 
+const pizzaData = [
+  {
+    name: "Bangkit Mobile Development",
+    ingredients: "KOTLIN, KOTLIN, KOTLIN",
+    price: 10,
+    photoName: "images/bangkit.jpg",
+    soldOut: false,
+  },
+  {
+    name: "Bangkit Google Cloud",
+    ingredients: "CLOUD RUN, CLOUD RUN, CLOUD RUN",
+    price: 20,
+    photoName: "images/bangkit.jpg",
+    soldOut: false,
+  },
+  {
+    name: "Bangkit Mentor",
+    ingredients: "WEEKCON, WEEKCON, WEEKCON",
+    price: 15,
+    photoName: "images/bangkit.jpg",
+    soldOut: false,
+  },
+  {
+    name: "Bangkit Mentee",
+    ingredients: "CAPSTONE, CAPSTONE, CAPSTONE",
+    price: 10,
+    photoName: "images/bangkit.jpg",
+    soldOut: true,
+  },
+];
+
 function App() {
   return (
     <div className="container">
@@ -27,7 +58,13 @@ function Menu() {
     <div className="menu">
       <h2>Our menu</h2>
 
-      <Pizza
+      <div className="pizzas">
+        {pizzaData.map((pizza) => (
+          <Pizza pizzaObj={pizza} key={pizza.name} />
+        ))}
+      </div>
+
+      {/* <Pizza
         name="Bangkit Cloud Computing"
         ingredient="Cheese, Cheese, Cheese"
         photoName="images/bangkit.jpg"
@@ -39,7 +76,7 @@ function Menu() {
         ingredient="TENSORFLOW, TENSORFLOW, TENSORFLOW"
         photoName="images/bangkit.jpg"
         price={15}
-      />
+      /> */}
     </div>
   );
 }
@@ -48,11 +85,11 @@ function Pizza(props) {
   // console.log(props);
   return (
     <div className="pizza">
-      <img src={props.photoName} alt="" />
+      <img src={props.pizzaObj.photoName} alt="" />
       <div>
-        <h3>{props.name}</h3>
-        <p>{props.ingredient}</p>
-        <p>{props.price + 3}</p>
+        <h3>{props.pizzaObj.name}</h3>
+        <p>{props.pizzaObj.ingredients}</p>
+        <p>{props.pizzaObj.price + 3}</p>
       </div>
     </div>
   );
