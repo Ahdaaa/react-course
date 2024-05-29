@@ -60,3 +60,9 @@ In summary, **Next.js** and **Remix** will make sense for building actual produc
 - It works essentially like HTML, but we can enter "JS Mode" by using {}
 - Statements are not allowed (if/else, for, switch)
 - A piece of JSX can only have one **root element**, if we need more we can use `<React.Fragment>`
+
+## React States
+
+- One Component, One State. Use state for any data that the component should keep track of (remember) over time.
+- Whenever you want a thing to be dynamic, create a piece of state related to that "thing".
+- For data that should not trigger component re-renders, **dont use state**, use a regular variable instead.
