@@ -85,16 +85,16 @@ function Menu() {
   );
 }
 
-function Pizza(props) {
+function Pizza({ pizzaObj }) {
   // console.log(props);
   const style = { filter: "grayscale(1)" };
 
-  if (props.pizzaObj.soldOut) {
+  if (pizzaObj.soldOut) {
     return (
       <div className="pizza">
-        <img src={props.pizzaObj.photoName} alt="" style={style}></img>
+        <img src={pizzaObj.photoName} alt="" style={style}></img>
         <div>
-          <h3>{props.pizzaObj.name}</h3>
+          <h3>{pizzaObj.name}</h3>
           <p>SOLD OUT</p>
         </div>
       </div>
@@ -103,11 +103,11 @@ function Pizza(props) {
 
   return (
     <div className="pizza">
-      <img src={props.pizzaObj.photoName} alt="" />
+      <img src={pizzaObj.photoName} alt="" />
       <div>
-        <h3>{props.pizzaObj.name}</h3>
-        <p>{props.pizzaObj.ingredients}</p>
-        <p>{props.pizzaObj.price + 3}</p>
+        <h3>{pizzaObj.name}</h3>
+        <p>{pizzaObj.ingredients}</p>
+        <p>{pizzaObj.price + 3}</p>
       </div>
     </div>
   );
@@ -122,7 +122,7 @@ function Footer() {
   return (
     <footer className="footer">
       {isOpen ? (
-        <Order closeHour={closeHour} />
+        <Order closeHour={closeHour} openHour={openHour} />
       ) : (
         <div className="order">
           <p>We're closed</p>
@@ -140,10 +140,12 @@ function Footer() {
   // return React.createElement("footer", null, "We're currently open!");
 }
 
-function Order(props) {
+function Order({ closeHour, openHour }) {
   return (
     <div className="order">
-      <p>We're open til {props.closeHour}:00</p>
+      <p>
+        We're open from {openHour}:00 til {closeHour}:00
+      </p>
       <button className="btn">Order</button>
     </div>
   );
