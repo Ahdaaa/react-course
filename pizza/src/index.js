@@ -62,14 +62,25 @@ function Menu() {
     <div className="menu">
       <h2>Our menu</h2>
 
-      {numPizzas > 0 && ( // react will render 0 if empty
+      {/* conditional render ternary */}
+      {numPizzas > 0 ? (
         <div className="pizzas">
           {pizzas.map((pizza) => (
             <Pizza pizzaObj={pizza} key={pizza.name} />
           ))}
         </div>
+      ) : (
+        <p>We're still working on the menu</p>
       )}
 
+      {/* conditional render && */}
+      {/* {numPizzas > 0 && ( // react will render 0 if empty
+        <div className="pizzas">
+          {pizzas.map((pizza) => (
+            <Pizza pizzaObj={pizza} key={pizza.name} />
+          ))}
+        </div>
+      )} */}
       {/* <Pizza
         name="Bangkit Cloud Computing"
         ingredient="Cheese, Cheese, Cheese"
