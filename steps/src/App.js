@@ -14,7 +14,7 @@ export default function App() {
 
   return (
     <>
-      <button className="close" onClick={() => setIsOpen(!isOpen)}>
+      <button className="close" onClick={() => setIsOpen((is) => !is)}>
         &times;
       </button>
       {isOpen && (
@@ -33,7 +33,7 @@ export default function App() {
             <button
               style={{ backgroundColor: "#7950f2", color: "#fff" }}
               onClick={() => {
-                if (step > 1) setStep(step - 1);
+                if (step > 1) setStep((s) => s - 1); // this is more correct, incase you want to decrement it twice
               }}
             >
               Previous
@@ -41,7 +41,8 @@ export default function App() {
             <button
               style={{ backgroundColor: "#7950f2", color: "#fff" }}
               onClick={() => {
-                if (step < 3) setStep(step + 1);
+                // if (step < 3) setStep(step + 1); this is not ideal even if it works
+                if (step < 3) setStep((s) => s + 1);
               }}
             >
               Next
