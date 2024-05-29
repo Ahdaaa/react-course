@@ -64,11 +64,18 @@ function Menu() {
 
       {/* conditional render ternary */}
       {numPizzas > 0 ? (
-        <div className="pizzas">
-          {pizzas.map((pizza) => (
-            <Pizza pizzaObj={pizza} key={pizza.name} />
-          ))}
-        </div>
+        <>
+          {/* This is react fragment, to solve multiple parent in jsx*/}
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut natus
+            sunt esse ad magni, distinctio voluptate ipsum
+          </p>
+          <div className="pizzas">
+            {pizzas.map((pizza) => (
+              <Pizza pizzaObj={pizza} key={pizza.name} />
+            ))}
+          </div>
+        </>
       ) : (
         <p>We're still working on the menu</p>
       )}
@@ -125,7 +132,7 @@ function Footer() {
         <Order closeHour={closeHour} openHour={openHour} />
       ) : (
         <div className="order">
-          <p>We're closed</p>
+          <p>We're closed, we'll open in {openHour}:00</p>
         </div>
       )}
 
