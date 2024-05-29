@@ -94,27 +94,27 @@ function Menu() {
 
 function Pizza({ pizzaObj }) {
   // console.log(props);
-  const style = { filter: "grayscale(1)" };
+  // const style = { filter: "grayscale(1)" };
 
-  if (pizzaObj.soldOut) {
-    return (
-      <div className="pizza">
-        <img src={pizzaObj.photoName} alt="" style={style}></img>
-        <div>
-          <h3>{pizzaObj.name}</h3>
-          <p>SOLD OUT</p>
-        </div>
-      </div>
-    );
-  }
+  // if (pizzaObj.soldOut) {
+  //   return (
+  //     <div className="pizza">
+  //       <img src={pizzaObj.photoName} alt="" style={style}></img>
+  //       <div style={style}>
+  //         <h3>{pizzaObj.name}</h3>
+  //         <p>SOLD OUT</p>
+  //       </div>
+  //     </div>
+  //   );
+  // }
 
   return (
-    <div className="pizza">
+    <div className={`pizza ${pizzaObj.soldOut ? "sold-out" : ""}`}>
       <img src={pizzaObj.photoName} alt="" />
       <div>
         <h3>{pizzaObj.name}</h3>
         <p>{pizzaObj.ingredients}</p>
-        <p>{pizzaObj.price + 3}</p>
+        <span>{pizzaObj.soldOut ? "SOLD-OUT" : pizzaObj.price}</span>
       </div>
     </div>
   );
