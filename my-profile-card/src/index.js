@@ -1,7 +1,29 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./styles.css";
-import { FaGolang } from "react-icons/fa6";
+
+const skills = [
+  {
+    skill: "Golang",
+    level: "intermediate",
+    color: "blue",
+  },
+  {
+    skill: "React",
+    level: "intermediate",
+    color: "#00008B",
+  },
+  {
+    skill: "HTML/CSS",
+    level: "advanced",
+    color: "green",
+  },
+  {
+    skill: "Next.JS",
+    level: "beginner",
+    color: "red",
+  },
+];
 
 function App() {
   return (
@@ -9,7 +31,15 @@ function App() {
       <Avatar />
       <div className="px-6 py-4">
         <Intro />
-        <Skills />
+        <div className="pt-4 pb-2 flex gap-2 flex-wrap">
+          {skills.map((skill) => (
+            <Skills
+              name={skill.skill}
+              level={skill.level}
+              color={skill.color}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );
@@ -44,24 +74,19 @@ const Intro = () => {
   );
 };
 
-const Skills = () => {
+const Skills = ({ name, level, color }) => {
+  const bgColor = { backgroundColor: `${color}` };
   return (
-    <div className="pt-4 pb-2 flex gap-2 flex-wrap">
-      <div class="flex w-20 justify-center bg-blue-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700">
-        Golang <FaGolang />
-      </div>
-      <div class="flex w-20 justify-center bg-blue-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700">
-        Golang <FaGolang />
-      </div>
-      <div class="flex w-20 justify-center bg-blue-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700">
-        Golang <FaGolang />
-      </div>
-      <div class="flex w-20 justify-center bg-blue-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700">
-        Golang <FaGolang />
-      </div>
-      <div class="flex w-20 justify-center bg-blue-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700">
-        Golang <FaGolang />
-      </div>
+    <div
+      className="flex gap-1 w-28 justify-center rounded-full px-3 py-1 text-sm font-bold text-white text-gray-700"
+      style={bgColor}
+    >
+      <p>{name}</p>
+      <span>
+        {level === "beginner" && "🤓"}
+        {level === "intermediate" && "💪"}
+        {level === "advanced" && "🔥"}
+      </span>
     </div>
   );
 };
