@@ -54,15 +54,21 @@ function Header() {
 }
 
 function Menu() {
+  const pizzas = pizzaData;
+  // const pizzas = [];
+  const numPizzas = pizzas.length;
+
   return (
     <div className="menu">
       <h2>Our menu</h2>
 
-      <div className="pizzas">
-        {pizzaData.map((pizza) => (
-          <Pizza pizzaObj={pizza} key={pizza.name} />
-        ))}
-      </div>
+      {numPizzas > 0 && ( // react will render 0 if empty
+        <div className="pizzas">
+          {pizzas.map((pizza) => (
+            <Pizza pizzaObj={pizza} key={pizza.name} />
+          ))}
+        </div>
+      )}
 
       {/* <Pizza
         name="Bangkit Cloud Computing"
@@ -97,19 +103,18 @@ function Pizza(props) {
 
 function Footer() {
   const hour = new Date().getHours();
-  const openHour = 12;
+  const openHour = 8;
   const closeHour = 22;
-  let info;
-
-  if (openHour <= hour && closeHour >= hour) {
-    info = "We're currently open!";
-  } else {
-    info = "We're currently closed.";
-  }
+  const isOpen = openHour <= hour && closeHour >= hour;
 
   return (
     <footer className="footer">
-      {new Date().toLocaleTimeString()} {info}
+      {isOpen && ( // if isOpen then return this html, react wont render "false" value
+        <div className="order">
+          <p>We're open til {closeHour}:00</p>
+          <button className="btn">Order</button>
+        </div>
+      )}
     </footer>
   );
   // return React.createElement("footer", null, "We're currently open!");
