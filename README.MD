@@ -54,3 +54,9 @@ To start a new real-world react project, react recommended us to use their frame
 These frameworks will help us to avoid building solution of our own to solve code-splitting, routing, etc.
 
 In summary, **Next.js** and **Remix** will make sense for building actual products, not for learning react.
+
+## What is JSX?
+
+- It works essentially like HTML, but we can enter "JS Mode" by using {}
+- Statements are not allowed (if/else, for, switch)
+- A piece of JSX can only have one **root element**, if we need more we can use `<React.Fragment>`
