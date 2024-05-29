@@ -78,7 +78,7 @@ const Skills = ({ name, level, color }) => {
   const bgColor = { backgroundColor: `${color}` };
   return (
     <div
-      className="flex gap-1 w-28 justify-center rounded-full px-3 py-1 text-sm font-bold text-white text-gray-700"
+      className="flex gap-1 w-28 justify-center rounded-full px-3 py-1 text-sm font-bold text-white"
       style={bgColor}
     >
       <p>{name}</p>
