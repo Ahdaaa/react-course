@@ -81,25 +81,26 @@ function Menu() {
           ))}
         </div>
       )} */}
-      {/* <Pizza
-        name="Bangkit Cloud Computing"
-        ingredient="Cheese, Cheese, Cheese"
-        photoName="images/bangkit.jpg"
-        price={10}
-      />
-
-      <Pizza
-        name="Bangkit Machine Learning"
-        ingredient="TENSORFLOW, TENSORFLOW, TENSORFLOW"
-        photoName="images/bangkit.jpg"
-        price={15}
-      /> */}
     </div>
   );
 }
 
 function Pizza(props) {
   // console.log(props);
+  const style = { filter: "grayscale(1)" };
+
+  if (props.pizzaObj.soldOut) {
+    return (
+      <div className="pizza">
+        <img src={props.pizzaObj.photoName} alt="" style={style}></img>
+        <div>
+          <h3>{props.pizzaObj.name}</h3>
+          <p>SOLD OUT</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="pizza">
       <img src={props.pizzaObj.photoName} alt="" />
@@ -114,18 +115,29 @@ function Pizza(props) {
 
 function Footer() {
   const hour = new Date().getHours();
-  const openHour = 8;
+  const openHour = 12;
   const closeHour = 22;
   const isOpen = openHour <= hour && closeHour >= hour;
 
   return (
     <footer className="footer">
-      {isOpen && ( // if isOpen then return this html, react wont render "false" value
+      {isOpen ? (
         <div className="order">
           <p>We're open til {closeHour}:00</p>
           <button className="btn">Order</button>
         </div>
+      ) : (
+        <div className="order">
+          <p>We're closed</p>
+        </div>
       )}
+
+      {/* {isOpen && ( // if isOpen then return this html, react wont render "false" value
+        <div className="order">
+          <p>We're open til {closeHour}:00</p>
+          <button className="btn">Order</button>
+        </div>
+      )} */}
     </footer>
   );
   // return React.createElement("footer", null, "We're currently open!");
