@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import ReactDOM from "react-dom/client";
 import "./styles.css";
 
@@ -91,9 +91,63 @@ const Skills = ({ name, level, color }) => {
   );
 };
 
+function addDays(date, days) {
+  var result = new Date(date);
+  result.setDate(result.getDate() + days);
+  return result;
+}
+
+function DateCounter() {
+  const [step, setStep] = useState(0);
+  const [count, setCount] = useState(0);
+  let date = addDays(new Date(), count);
+
+  return (
+    <div className="flex flex-col gap-4 justify-center align-middle mx-5 my-5">
+      <div className="flex flex-row gap-3">
+        <button
+          className="btn btn-black"
+          onClick={() => {
+            if (step > 0) setStep((s) => s - 1);
+          }}
+        >
+          -
+        </button>
+        <span className="font-mono">Step: {step}</span>
+        <button className="btn btn-black" onClick={() => setStep((s) => s + 1)}>
+          +
+        </button>
+      </div>
+      <div className="flex flex-row gap-2">
+        <button
+          className="btn btn-black"
+          onClick={() => {
+            if (count > 0) setCount((c) => c - step);
+          }}
+        >
+          -
+        </button>
+        <span className="font-mono">Count: {count}</span>
+        <button
+          className="btn btn-black"
+          onClick={() => {
+            setCount((c) => c + step);
+          }}
+        >
+          +
+        </button>
+      </div>
+      <p className="font-mono font-bold">
+        {count} days from today is {date.toDateString()}
+      </p>
+    </div>
+  );
+}
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <App />
+    <DateCounter />
   </React.StrictMode>
 );
