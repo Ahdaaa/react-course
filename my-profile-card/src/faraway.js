@@ -1,23 +1,38 @@
 import React, { useState } from "react";
-
-const initialItems = [
-  { id: 1, description: "Passports", amount: 2, packed: false },
-  { id: 2, description: "Socks", amount: 12, packed: false },
-  { id: 3, description: "Charger", amount: 1, packed: true },
-];
+import "./tw-custom.css";
 
 export default function FarAway() {
   const [items, setItems] = useState([]);
+
+  function handleAddItems(item) {
+    setItems((items) => [...items, item]); // changing array without mutating them, by using spread.
+  }
+
+  function handleDeleteItem(id) {
+    setItems((items) => items.filter((item) => item.id !== id)); // if each item id isnt equal to id to remove, then keep it.
+  }
+
+  function handleCheckItem(id) {
+    setItems((items) =>
+      items.map((item) =>
+        item.id === id ? { ...item, packed: !item.packed } : item
+      )
+    );
+  }
 
   return (
     // w-3/5 mx-auto
     <div className="sm:container md:w-3/5 mx-auto flex flex-col items-center bg-gray-200 h-screen">
       <div className="mt-5 w-full flex flex-col items-center text-center mb-5">
         <Logo />
-        <Form itemsObj={items} setItemsObj={setItems} />
+        <Form onAddItems={handleAddItems} />
       </div>
 
-      <Packing itemsObj={items} />
+      <Packing
+        itemsObj={items}
+        onDeleteItem={handleDeleteItem}
+        onCheckItem={handleCheckItem}
+      />
 
       <Stats />
     </div>
@@ -32,15 +47,11 @@ function Logo() {
   );
 }
 
-function Form({ itemsObj, setItemsObj }) {
+function Form({ onAddItems }) {
   const [description, setDescription] = useState("");
   const [amount, setAmount] = useState(1);
 
   const maxAmount = Array.from({ length: 20 }, (_, i) => i + 1);
-
-  function handleAddItems(item) {
-    setItemsObj((itemsObj) => [...itemsObj, item]); // changing array without mutating them, by using spread.
-  }
 
   function handleSubmit(e) {
     e.preventDefault(); // no reload on submit
@@ -48,7 +59,7 @@ function Form({ itemsObj, setItemsObj }) {
     if (!description) return;
 
     const newItem = { id: Date.now(), description, amount, packed: false };
-    handleAddItems(newItem);
+    onAddItems(newItem);
     // console.log(newItem);
 
     // set back to default value
@@ -87,23 +98,32 @@ function Form({ itemsObj, setItemsObj }) {
   );
 }
 
-function Packing({ itemsObj }) {
+function Packing({ itemsObj, onDeleteItem, onCheckItem }) {
   return (
-    <ul className="font-ptSans font-semibold mb-5 lg:w-3/6 text-center flex flex-row gap-5">
+    <ul className="font-ptSans font-semibold mb-5 lg:w-3/6 text-center grid grid-cols-3 gap-5">
       {itemsObj.map((item) => (
-        <Item item={item} key={item.id} />
+        <div className="flex flex-row gap-2">
+          <input
+            type="checkbox"
+            id="default-checkbox"
+            value={item.packed}
+            className="checkbox"
+            onChange={() => onCheckItem(item.id)}
+          />
+          <Item item={item} onDeleteItem={onDeleteItem} key={item.id} />
+        </div>
       ))}
     </ul>
   );
 }
 
-function Item({ item }) {
+function Item({ item, onDeleteItem }) {
   return (
     <div className="flex flex-row justify-center align-center gap-2">
       <span className={item.packed ? "line-through" : ""}>
         {item.amount} {item.description}
       </span>
-      <button>❌</button>
+      <button onClick={() => onDeleteItem(item.id)}>❌</button>
     </div>
   );
 }

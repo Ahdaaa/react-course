@@ -9,3 +9,7 @@
 .btn-black:hover {
   @apply bg-white text-black;
 }
+
+.checkbox {
+  @apply w-4 h-4 mt-1 text-blue-600 bg-gray-100 border-gray-300 rounded;
+}
