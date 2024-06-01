@@ -7,15 +7,17 @@ const initialItems = [
 ];
 
 export default function FarAway() {
+  const [items, setItems] = useState([]);
+
   return (
     // w-3/5 mx-auto
     <div className="sm:container md:w-3/5 mx-auto flex flex-col items-center bg-gray-200 h-screen">
       <div className="mt-5 w-full flex flex-col items-center text-center mb-5">
         <Logo />
-        <Form />
+        <Form itemsObj={items} setItemsObj={setItems} />
       </div>
 
-      <Packing />
+      <Packing itemsObj={items} />
 
       <Stats />
     </div>
@@ -30,11 +32,15 @@ function Logo() {
   );
 }
 
-function Form() {
+function Form({ itemsObj, setItemsObj }) {
   const [description, setDescription] = useState("");
   const [amount, setAmount] = useState(1);
 
   const maxAmount = Array.from({ length: 20 }, (_, i) => i + 1);
+
+  function handleAddItems(item) {
+    setItemsObj((itemsObj) => [...itemsObj, item]); // changing array without mutating them, by using spread.
+  }
 
   function handleSubmit(e) {
     e.preventDefault(); // no reload on submit
@@ -42,7 +48,7 @@ function Form() {
     if (!description) return;
 
     const newItem = { id: Date.now(), description, amount, packed: false };
-    initialItems.push(newItem);
+    handleAddItems(newItem);
     // console.log(newItem);
 
     // set back to default value
@@ -81,10 +87,10 @@ function Form() {
   );
 }
 
-function Packing() {
+function Packing({ itemsObj }) {
   return (
     <ul className="font-ptSans font-semibold mb-5 lg:w-3/6 text-center flex flex-row gap-5">
-      {initialItems.map((item) => (
+      {itemsObj.map((item) => (
         <Item item={item} key={item.id} />
       ))}
     </ul>
