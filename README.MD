@@ -66,3 +66,17 @@ In summary, **Next.js** and **Remix** will make sense for building actual produc
 - One Component, One State. Use state for any data that the component should keep track of (remember) over time.
 - Whenever you want a thing to be dynamic, create a piece of state related to that "thing".
 - For data that should not trigger component re-renders, **dont use state**, use a regular variable instead.
+
+Thinking in React and When to use State?
+
+We need to consider these things to determine whether we'll use state or not.
+
+1. Will data change at some point? -> If yes continue to next question, if no then **use regular const variable**
+2. Can it be computer from existing state/props? -> If yes use **derive state**, if no continue to next question.
+3. Should it re render component? -> If yes then you will need to create a state, If no then use `useRef` hook.
+
+If we need to create a state, we also need to determine where can we put the state by answering these questions.
+
+1. Will this state only used by this component? -> If yes then leave it in the component, if no continue to next question.
+2. Will the state also used by a child component? -> if yes then pass the state to child via **props**, if no continue to next question.
+3. Will the state used by one or a few siblings component? -> if yes then lift the state up to first common parent, end.
