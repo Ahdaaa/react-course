@@ -34,7 +34,7 @@ export default function FarAway() {
         onCheckItem={handleCheckItem}
       />
 
-      <Stats />
+      <Stats itemsObj={items} />
     </div>
   );
 }
@@ -128,11 +128,15 @@ function Item({ item, onDeleteItem }) {
   );
 }
 
-function Stats() {
+function Stats({ itemsObj }) {
+  const numItems = itemsObj.length;
+  const numPacked = itemsObj.filter((item) => item.packed).length;
+
   return (
     <footer>
       <em className="font-ptSans lg:text-xl text-sm">
-        💼 You have X items on your list, and you already packed X (X%){" "}
+        💼 You have {numItems} items on your list, and you already packed{" "}
+        {numPacked} ({numItems > 0 ? `${(numPacked / numItems) * 100}%` : `0%`})
       </em>
     </footer>
   );
