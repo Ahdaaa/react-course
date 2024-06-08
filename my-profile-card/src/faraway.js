@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import "./tw-custom.css";
-import Logo from "./logo";
-import Form from "./form";
-import Packing from "./packing";
-import Stats from "./stats";
+import Logo from "./far-away/logo";
+import Form from "./far-away/form";
+import Packing from "./far-away/packing";
+import Stats from "./far-away/stats";
 
 export default function FarAway() {
   const [items, setItems] = useState([]);
