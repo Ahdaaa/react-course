@@ -80,3 +80,30 @@ If we need to create a state, we also need to determine where can we put the sta
 1. Will this state only used by this component? -> If yes then leave it in the component, if no continue to next question.
 2. Will the state also used by a child component? -> if yes then pass the state to child via **props**, if no continue to next question.
 3. Will the state used by one or a few siblings component? -> if yes then lift the state up to first common parent, end.
+
+## When to Create New Component ?
+
+When in doubt, start with a relatively big component, then split it into smaller components as it becomes necessary.
+
+There are 4 aspects to consider when creating new components:
+
+1. Logical separation of content / layout,
+
+   - Does the component contain pieces of content or layout that don't belong together?
+
+2. Reusability,
+
+   - Is it possible to reuse part of the component?
+   - Do you want or need to reuse it?
+
+3. Responsibilities / Complexity,
+
+   - Is the component doing too many different things?
+   - Does it rely on too many props?
+   - Does it has too many pieces of state and/or effects?
+   - Is the code too complex/confusing?
+
+4. Personal coding style,
+   - Do you prefer smaller functions/components?
+
+If the answers is yes, then you might need a new component!
