@@ -3,6 +3,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import ReactDOM from "react-dom/client";
 import App from "./app";
 import FarAway from "./faraway";
+import Popcorn from "./popcorn";
 
 const router = createBrowserRouter([
   {
@@ -12,6 +13,10 @@ const router = createBrowserRouter([
   {
     path: "/faraway",
     element: <FarAway />,
+  },
+  {
+    path: "/popcorn",
+    element: <Popcorn />,
   },
 ]);
 
