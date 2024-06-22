@@ -107,3 +107,21 @@ There are 4 aspects to consider when creating new components:
    - Do you prefer smaller functions/components?
 
 If the answers is yes, then you might need a new component!
+
+## Component Categories
+
+1. Stateless / Presentational Component
+
+   - No state
+   - Can receive props
+   - Usually small and reusable
+
+2. Stateful Component
+
+   - Have state
+   - Can still be reusable
+
+3. Structural Component
+   - "Pages", "Layout", or "Screens" of the app
+   - result of composition
+   - Can be huge and non-reusable
