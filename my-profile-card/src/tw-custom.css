@@ -13,3 +13,7 @@
 .checkbox {
   @apply w-4 h-4 mt-1 text-blue-600 bg-gray-100 border-gray-300 rounded;
 }
+
+.u-watched > p {
+  @apply flex gap-5;
+}
