@@ -24,11 +24,43 @@ const tempMovieData = [
   },
 ];
 
+const tempWatchedData = [
+  {
+    imdbID: "tt1375666",
+    Title: "Inception",
+    Year: "2010",
+    Poster:
+      "https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_SX300.jpg",
+    runtime: 148,
+    imdbRating: 8.8,
+    userRating: 10,
+  },
+  {
+    imdbID: "tt0088763",
+    Title: "Back to the Future",
+    Year: "1985",
+    Poster:
+      "https://m.media-amazon.com/images/M/MV5BZmU0M2Y1OGUtZjIxNi00ZjBkLTg1MjgtOWIyNThiZWIwYjRiXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SX300.jpg",
+    runtime: 116,
+    imdbRating: 8.5,
+    userRating: 9,
+  },
+];
+
+const average = (arr) => {
+  return arr.reduce((acc, cur, i, arr) => acc + cur / arr.length, 0); // count the average of desired field in an object.
+};
+
 export default function Main() {
   const [IsOpenL, setIsOpenL] = useState(false);
   const [IsOpenR, setIsOpenR] = useState(false);
 
   const [Movies, setMovies] = useState(tempMovieData);
+  const [Watched, setWatched] = useState(tempWatchedData);
+
+  const avgImdbRating = average(Watched.map((movie) => movie.imdbRating));
+  const avgUserRating = average(Watched.map((movie) => movie.userRating));
+  const avgRuntime = average(Watched.map((movie) => movie.runtime));
 
   return (
     <main className="flex gap-9 justify-center mt-5">
@@ -43,10 +75,10 @@ export default function Main() {
                 <img
                   src={movie.Poster}
                   alt="movie poster"
-                  width={100}
-                  height={150}
+                  width={75}
+                  height={100}
                 />
-                <div>
+                <div className="flex flex-col gap-3">
                   <h3 className="font-ptSans font-bold">{movie.Title}</h3>
                   <div>
                     <p>
@@ -61,7 +93,64 @@ export default function Main() {
         )}
       </div>
 
-      <div className="w-2/6"></div>
+      <div className="w-2/6">
+        <button onClick={() => setIsOpenR((open) => !open)}>
+          {IsOpenR ? "-" : "+"}
+        </button>
+        {IsOpenR && (
+          <>
+            <div className="u-watched">
+              <h2>Movies you watched</h2>
+              <p>
+                <span>#️⃣</span>
+                <span>{Watched.length} movies</span>
+              </p>
+              <p>
+                <span>⭐</span>
+                <span>{avgImdbRating}</span>
+              </p>
+              <p>
+                <span>🌟</span>
+                <span>{avgUserRating}</span>
+              </p>
+              <p>
+                <span>⌛</span>
+                <span>{avgRuntime} min</span>
+              </p>
+            </div>
+
+            <ul className="mt-5 flex flex-col gap-5">
+              {Watched.map((movie) => (
+                <li key={movie.imdbID} className="flex gap-5">
+                  <img
+                    src={movie.Poster}
+                    alt="movie poster"
+                    width={75}
+                    height={100}
+                  />
+                  <div className="flex flex-col gap-3">
+                    <h3 className="font-ptSans font-bold">{movie.Title}</h3>
+                    <div className="u-watched">
+                      <p>
+                        <span>⭐</span>
+                        <span>{movie.imdbRating}</span>
+                      </p>
+                      <p>
+                        <span>🌟</span>
+                        <span>{movie.userRating}</span>
+                      </p>
+                      <p>
+                        <span>⌛</span>
+                        <span>{avgRuntime} min</span>
+                      </p>
+                    </div>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </>
+        )}
+      </div>
     </main>
   );
 }
